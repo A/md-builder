@@ -1,0 +1,30 @@
+{
+  "name": "md-builder",
+  "version": "0.1.0",
+  "description": "Compile markdown to PDF, Epub and Mobi as service",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/shuvalov-anton/md-builder.git"
+  },
+  "keywords": [
+    "md",
+    "markdown",
+    "service",
+    "server",
+    "epub",
+    "pdf"
+  ],
+  "author": "Anton <anton@shuvalov.info> (http://shuvalov.info/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/shuvalov-anton/md-builder/issues"
+  },
+  "homepage": "https://github.com/shuvalov-anton/md-builder#readme",
+  "dependencies": {
+    "express": "^4.13.3"
+  }
+}
