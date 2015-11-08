@@ -25,6 +25,15 @@
   },
   "homepage": "https://github.com/shuvalov-anton/md-builder#readme",
   "dependencies": {
-    "express": "^4.13.3"
+    "body-parser": "^1.14.1",
+    "commonmark-helpers": "^0.4.1",
+    "debug": "^2.2.0",
+    "express": "^4.13.3",
+    "trim": "0.0.1"
+  },
+  "devDependencies": {
+    "mocha": "^2.3.3",
+    "superagent": "^1.4.0",
+    "supertest": "^1.1.0"
   }
 }
