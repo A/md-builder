@@ -19,7 +19,7 @@ describe('md-builder', () => {
       .expect(200, {
         data: '<h1>God in his heaven, all rights with the world!</h1>'
       })
-      .end(done())
+      .end(done)
     ;
   });
 
