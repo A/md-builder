@@ -34,6 +34,7 @@ describe('md-builder', () => {
         })
         .expect(200)
         .end((err, res) => {
+          // TODO: stupidddd
           assert(0 === res.text.indexOf('%PDF'), 'should be PDF')
           done(err);
         })
