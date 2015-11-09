@@ -24,7 +24,7 @@ const app = module.exports = express()
       lang: req.body.lang || 'en'
     }, (err, content) => {
       debug('Markdown has been compiled to %s: %o', format, content);
-        res.send(content)
+      res.send(content);
     });
   })
   .listen(8000, () => console.log('App listen 8000 port'))
