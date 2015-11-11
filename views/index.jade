@@ -2,14 +2,24 @@ doctype html
 html(lang="en")
   head
     title Stupid tests for the service
+    link(rel="stylesheet" href="/main.css")
   body
-    h1 PDF
-    form(method="post", action="/pdf")
-      textarea(name="content")
-      br
-      button Submit
-    h1 HTML
-    form(method="post", action="/html")
-      textarea(name="content")
-      br
-      button Submit
+    .container
+      h1.headline Build your markdown
+      p.description
+        | Journey your markdown to the Userland
+    form#pdf-form(method="post", action="/pdf" target="_blank")
+      form#html-form(method="post", action="/html" target="_blank")
+        .editor
+          .container
+            textarea.markdown(name="content" placeholder="Just put it right here…")
+        .container
+          button(type="submit" form="html-form") HTML
+          button(type="submit" form="pdf-form") PDF
+          button(disabled) Epub
+          button(disabled) Mobi
+        .container
+          p
+            | We have 
+            a(href="#") pretty nice API
+            |  :D
