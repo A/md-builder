@@ -1,0 +1,15 @@
+doctype html
+html(lang="en")
+  head
+    title Stupid tests for the service
+  body
+    h1 PDF
+    form(method="post", action="/pdf")
+      textarea(name="content")
+      br
+      button Submit
+    h1 HTML
+    form(method="post", action="/html")
+      textarea(name="content")
+      br
+      button Submit
