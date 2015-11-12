@@ -33,10 +33,7 @@ const app = module.exports = express()
     const format = req.params.format;
     const compiler = compilers.get(format);
     if (!compiler) return res.sendStatus(404);
-    compiler({
-      content: req.body.content,
-      lang: req.body.lang
-    }, (err, data) => {
+    compiler(req.body, (err, data) => {
       debug('Markdown has been compiled: %o', data.content);
       res.set('Content-Type', mime.lookup(format) || 'text/html');
       res.send(data.content);
