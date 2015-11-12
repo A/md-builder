@@ -8,7 +8,7 @@ body {
 }
 
 a { color: #5585ff; }
-p { color: gray; }
+p, label { color: gray; }
 
 h1 {
   font-size: 1.2rem;
@@ -44,7 +44,13 @@ textarea.markdown:focus {
   outline: none;
 }
 
-button {
+label {
+  padding-right: .25rem;
+
+}
+
+button,
+select {
   position:relative;
   overflow:hidden;
   color:#5585ff;

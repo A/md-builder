@@ -7,22 +7,21 @@ html(lang="en")
     .container
       h1.headline Build your markdown
       p.description
-        | Journey your markdown to the Userland
+        | Journey your markdown to the Userland. Btw, we have 
+        a(href="#") pretty nice API
+        |  :D
     form#pdf-form(method="post", action="/pdf" target="_blank")
       form#html-form(method="post", action="/html" target="_blank")
         .editor
           .container
             textarea.markdown(name="content" placeholder="Just put it right here…")
-            select(name="theme")
-              option none
-              option(value="poole") Poole
         .container
+          label theme:
+          select(name="theme")
+            option none
+            option(value="poole") Poole
           button(type="submit" form="html-form") HTML
           button(type="submit" form="pdf-form") PDF
           button(disabled) Epub
           button(disabled) Mobi
         .container
-          p
-            | We have 
-            a(href="#") pretty nice API
-            |  :D
