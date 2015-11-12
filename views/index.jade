@@ -13,6 +13,9 @@ html(lang="en")
         .editor
           .container
             textarea.markdown(name="content" placeholder="Just put it right here…")
+            select(name="theme")
+              option none
+              option(value="poole") Poole
         .container
           button(type="submit" form="html-form") HTML
           button(type="submit" form="pdf-form") PDF
