@@ -36,9 +36,9 @@ const app = module.exports = express()
   })
 
   /**
-   * Render homepage
+   * Render gist form on homepage
    */
-  .get('/', (req, res) => res.render('index'))
+  .get('/', (req, res) => res.redirect('/gist'))
 
   /**
    * Render gist by id
@@ -53,8 +53,11 @@ const app = module.exports = express()
     ;
   })
 
+  /**
+   * Update gist
+   */
   .post('/gist/:id?', (req, res) => {
-    const id      = req.params.id;
+    const id = req.params.id;
     const gist = id
       ? Gist.findById(id)
       : new Gist()
@@ -62,7 +65,6 @@ const app = module.exports = express()
     gist.content = req.body.content;
     gist.title   = req.body.title;
     gist.lang    = req.body.lang;
-    console.log(gist);
     gist
       .save(err => console.error(err))
       .then(gist => res.redirect('/gist/' + gist._id))
@@ -70,19 +72,44 @@ const app = module.exports = express()
   })
 
   /**
-   * Compile posted data to the given format
+   * _Create_ book in the given format and response w/ it
    */
-  .post('/:format', (req, res) => {
+  .get('/:format/:id?', (req, res) => {
     const format = req.params.format;
+    const id = req.params.id;
+    if (!id) return res.sendStatus(501); // TODO: Implement API
     const compiler = compilers.get(format);
     if (!compiler) return res.sendStatus(404);
-    compiler(req.body, (err, data) => {
-      if (data.gist_id) return res.send({ url: `${fullHost(req)}/gist/${data.gist_id}` })
-      debug('Markdown has been compiled: %o', data.content);
-      res.set('Content-Type', mime.lookup(format) || 'text/html');
-      data.pipe ? data.pipe(res) : res.send(data.content);
-    });
+    Gist
+      .findById(id, (err, gist) => {
+        compiler({
+          title: gist.title,
+          content: gist.content,
+          lang: gist.lang
+        }, (err, data) => {
+          if (data.gist_id) return res.send({ url: `${fullHost(req)}/gist/${data.gist_id}` })
+          debug('Markdown has been compiled: %o', data.content);
+          res.set('Content-Type', mime.lookup(format) || 'text/html');
+          data.pipe ? data.pipe(res) : res.send(data.content);
+        });
+      })
+    ;
   })
+
+  // #<{(|*
+  //  * Compile posted data to the given format
+  //  |)}>#
+  // .post('/:format', (req, res) => {
+  //   const format = req.params.format;
+  //   const compiler = compilers.get(format);
+  //   if (!compiler) return res.sendStatus(404);
+  //   compiler(req.body, (err, data) => {
+  //     if (data.gist_id) return res.send({ url: `${fullHost(req)}/gist/${data.gist_id}` })
+  //     debug('Markdown has been compiled: %o', data.content);
+  //     res.set('Content-Type', mime.lookup(format) || 'text/html');
+  //     data.pipe ? data.pipe(res) : res.send(data.content);
+  //   });
+  // })
 
   .listen(8000, () => console.log('App listen 8000 port'))
 ;
