@@ -41,6 +41,35 @@ const app = module.exports = express()
   .get('/', (req, res) => res.render('index'))
 
   /**
+   * Render gist by id
+   */
+  .get('/gist/:id?', (req, res) => {
+    const id = req.params.id;
+    if (!id) return res.render('form');
+    Gist
+      .findById(id, (err, gist) => {
+        res.render('form', gist.toJSON());
+      })
+    ;
+  })
+
+  .post('/gist/:id?', (req, res) => {
+    const id      = req.params.id;
+    const gist = id
+      ? Gist.findById(id)
+      : new Gist()
+    ;
+    gist.content = req.body.content;
+    gist.title   = req.body.title;
+    gist.lang    = req.body.lang;
+    console.log(gist);
+    gist
+      .save(err => console.error(err))
+      .then(gist => res.redirect('/gist/' + gist._id))
+    ;
+  })
+
+  /**
    * Compile posted data to the given format
    */
   .post('/:format', (req, res) => {
@@ -53,17 +82,6 @@ const app = module.exports = express()
       res.set('Content-Type', mime.lookup(format) || 'text/html');
       data.pipe ? data.pipe(res) : res.send(data.content);
     });
-  })
-
-  /**
-   * Render gist by id
-   */
-  .get('/gist/:id', (req, res) => {
-    Gist
-      .findById(req.params.id, (err, gist) => {
-        res.render('gist', gist.toJSON());
-      })
-    ;
   })
 
   .listen(8000, () => console.log('App listen 8000 port'))
