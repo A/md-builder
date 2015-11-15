@@ -58,20 +58,20 @@ const app = module.exports = express()
    */
   .post('/gist/:id?', (req, res) => {
     const id = req.params.id;
-    console.log(id);
+    const data = {
+      content: req.body.content,
+      lang: req.body.lang,
+      title: req.body.title
+    };
     if (id) {
       Gist.update({ _id: id}, {
-        $set: {
-          content: req.body.content,
-          lang: req.body.lang,
-          title: req.body.title
-        }
+        $set: data
       }, (err, gist) => {
         if (err) return console.error(err);
         res.redirect('back');
       })
     } else {
-      new Gist()
+      new Gist(data)
         .save(err => console.error(err))
         .then(gist => res.redirect('/gist/' + gist._id))
       ;
