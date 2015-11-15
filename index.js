@@ -90,12 +90,16 @@ const app = module.exports = express()
     Gist
       .findById(id, (err, gist) => {
         compiler({
+          id: id,
           title: gist.title,
           content: gist.content,
           lang: gist.lang
         }, (err, data) => {
+          data = data || {};
+          if (err) return res.send(500, err);
           if (data.gist_id) return res.send({ url: `${fullHost(req)}/gist/${data.gist_id}` })
           debug('Markdown has been compiled: %o', data.content);
+          if (data.redirect) return res.redirect(data.redirect);
           res.set('Content-Type', mime.lookup(format) || 'text/html');
           data.pipe ? data.pipe(res) : res.send(data.content);
         });
