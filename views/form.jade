@@ -10,7 +10,7 @@ html(lang="en")
         | Journey your markdown to the Userland. And yay! I have 
         a(href="#") pretty nice API
         |  for you! :D
-    form(method="POST" action="/gist")
+    form(method="POST" action=_id ? "/gist/" + _id : "/gist")
       .editor
         .container
           label.markdown-title-label #
@@ -18,9 +18,10 @@ html(lang="en")
           textarea.markdown(name="content" placeholder="Just put it right here…")= content
       .container
         if (_id)
+          a.btn.btn-blue(href="/html/#{_id}" target="_blank") HTML
           a.btn.btn-blue(href="/pdf/#{_id}" target="_blank") PDF
-          a.btn.btn-blue(href="/epub/#{_id}" target="_blank") EPUB
-          a.btn.btn-blue(href="/MOBI/#{_id}" target="_blank") MOBI
+          a.btn.btn-blue(href="/epub/#{_id}" target="_blank" disabled) EPUB
+          a.btn.btn-blue(href="/MOBI/#{_id}" target="_blank" disabled) MOBI
         button.btn(type="submit") Save
     script(src="//code.jquery.com/jquery-2.1.4.min.js")
     script(src="/app.js")
