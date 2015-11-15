@@ -58,17 +58,24 @@ const app = module.exports = express()
    */
   .post('/gist/:id?', (req, res) => {
     const id = req.params.id;
-    const gist = id
-      ? Gist.findById(id)
-      : new Gist()
-    ;
-    gist.content = req.body.content;
-    gist.title   = req.body.title;
-    gist.lang    = req.body.lang;
-    gist
-      .save(err => console.error(err))
-      .then(gist => res.redirect('/gist/' + gist._id))
-    ;
+    console.log(id);
+    if (id) {
+      Gist.update({ _id: id}, {
+        $set: {
+          content: req.body.content,
+          lang: req.body.lang,
+          title: req.body.title
+        }
+      }, (err, gist) => {
+        if (err) return console.error(err);
+        res.redirect('back');
+      })
+    } else {
+      new Gist()
+        .save(err => console.error(err))
+        .then(gist => res.redirect('/gist/' + gist._id))
+      ;
+    }
   })
 
   /**
@@ -116,6 +123,6 @@ const app = module.exports = express()
 
 
 /**
- * Return full
+ * Return full url
  */
 const fullHost = req => req.protocol + '://' + req.get('host');
