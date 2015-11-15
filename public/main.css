@@ -5,6 +5,7 @@ body {
   -webkit-font-smoothing: antialiased;
     -webkit-animation: fadeIn 3s;
   animation: fadeIn 3s;
+  padding-bottom: 10rem;
 }
 
 a { color: #5585ff; }
@@ -41,6 +42,7 @@ input.markdown-title {
 }
 
 input.markdown-title {
+  text-transform: uppercase;
   padding: 1rem 0 1rem 1.5rem;
 }
 
@@ -63,11 +65,11 @@ input.markdown-title:focus {
 
 label {
   padding-right: .25rem;
-
 }
 
-button,
+.btn,
 select {
+  display: inline-block;
   position:relative;
   overflow:hidden;
   color: green;
@@ -75,22 +77,36 @@ select {
   background-color:transparent;
   cursor:pointer;
   line-height:2;
-  float: right;
   padding:0 1.25rem;
+  margin-right: 1rem;
   border-radius:1.25rem;
   font-size:1rem;
   text-transform:lowercase;
   outline:none;
   transition:transform .125s;
+  text-decoration: none;
 }
 
-button:active {
+.btn.btn-blue {
+  color: blue;
+  border:2px solid blue;
+}
+
+.btn.btn-blue:active {
+  background-color: blue;
+}
+
+.btn:active {
   transform:scale(.9,.9);
   background-color: green;
   color: #fafafa;
 }
 
-button[disabled] {
+button.btn {
+  top: -12px;
+}
+
+.btn[disabled] {
   opacity: .3;
   pointer-events: none;
 }
