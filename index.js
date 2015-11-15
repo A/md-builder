@@ -48,10 +48,10 @@ const app = module.exports = express()
     const compiler = compilers.get(format);
     if (!compiler) return res.sendStatus(404);
     compiler(req.body, (err, data) => {
-      if (data.gist_id) return res.redirect('/gist/' + data.gist_id);
+      if (data.gist_id) return res.send({ url: `${fullHost(req)}/gist/${data.gist_id}` })
       debug('Markdown has been compiled: %o', data.content);
       res.set('Content-Type', mime.lookup(format) || 'text/html');
-      res.send(data.content);
+      data.pipe ? data.pipe(res) : res.send(data.content);
     });
   })
 
@@ -68,3 +68,9 @@ const app = module.exports = express()
 
   .listen(8000, () => console.log('App listen 8000 port'))
 ;
+
+
+/**
+ * Return full
+ */
+const fullHost = req => req.protocol + '://' + req.get('host');
