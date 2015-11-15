@@ -28,19 +28,36 @@ h1 {
   margin-bottom: 1rem;
 }
 
-textarea.markdown {
+textarea.markdown,
+input.markdown-title {
   background: 0 0;
   border: none;
   color: #333;
   font-family: Georgia,Sans;
   font-size: 24px;
-  min-height: 450px;
-  padding: 2rem 0;
+  padding: 1rem 0;
   resize: vertical;
   width: 100%;
 }
 
-textarea.markdown:focus {
+input.markdown-title {
+  padding: 1rem 0 1rem 1.5rem;
+}
+
+label.markdown-title-label {
+  color: #bbb;
+  position: absolute;
+  top: 14px;
+  font-size: 1.6rem;
+  font-weight: bold;
+}
+
+textarea.markdown {
+  min-height: 450px;
+}
+
+textarea.markdown:focus,
+input.markdown-title:focus {
   outline: none;
 }
 
@@ -53,12 +70,12 @@ button,
 select {
   position:relative;
   overflow:hidden;
-  color:#5585ff;
-  border:2px solid #5585ff;
+  color: green;
+  border:2px solid green;
   background-color:transparent;
   cursor:pointer;
   line-height:2;
-  margin:0 1rem 0 0;
+  float: right;
   padding:0 1.25rem;
   border-radius:1.25rem;
   font-size:1rem;
@@ -69,7 +86,7 @@ select {
 
 button:active {
   transform:scale(.9,.9);
-  background-color:#5585ff;
+  background-color: green;
   color: #fafafa;
 }
 
