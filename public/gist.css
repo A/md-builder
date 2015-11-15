@@ -1,0 +1,128 @@
+
+@font-face{
+  font-family: 'Fira Mono';
+  src: url('https://mozilla.github.io/eot/FiraMono-Regular.eot');
+  src: local('Fira Mono'),
+       url('https://mozilla.github.io/eot/FiraMono-Regular.eot') format('embedded-opentype'),
+       url('https://mozilla.github.io/woff/FiraMono-Regular.woff') format('woff'),
+       url('https://mozilla.github.io/ttf/FiraMono-Regular.ttf') format('truetype');
+  font-weight: 400;
+}
+
+
+body {
+  margin: 0;
+  font-family: 'Lucida Grande','Lucida Sans Unicode',Helvetica,Arial,Verdana,sans-serif;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+    -webkit-animation: fadeIn 3s;
+  animation: fadeIn 3s;
+  line-height: 1.5;
+  color: #333;
+}
+
+a { color: #5585ff; }
+h1, h2, h3 { color: black; }
+
+h1 {
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  margin: 1rem 0
+}
+
+h2 {
+  font-size: 1rem;
+  text-transform: uppercase;
+  margin: 1rem 0
+}
+
+ul > li,
+ol > li {
+  margin: .4rem 0;
+}
+
+ul, ol {
+  margin-top: -.6rem;
+}
+
+h3 {
+  font-size: 1rem;
+  font-weight: bold;
+  margin: 1rem 0
+}
+
+.container {
+  max-width: 720px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.editor {
+  background-color: #fafafa;
+  border: solid 1px #eaeaea;
+  margin-bottom: 1rem;
+}
+
+pre {
+  overflow: scroll;
+  font-family: 'Fira Mono', monospace;
+}
+
+img {
+  width: 100%;
+}
+
+textarea.markdown {
+  background: 0 0;
+  border: none;
+  color: #333;
+  font-family: Georgia,Sans;
+  font-size: 24px;
+  min-height: 450px;
+  padding: 2rem 0;
+  resize: vertical;
+  width: 100%;
+}
+
+textarea.markdown:focus {
+  outline: none;
+}
+
+label {
+  padding-right: .25rem;
+
+}
+
+button,
+select {
+  position:relative;
+  overflow:hidden;
+  color:#5585ff;
+  border:2px solid #5585ff;
+  background-color:transparent;
+  cursor:pointer;
+  line-height:2;
+  margin:0 1rem 0 0;
+  padding:0 1.25rem;
+  border-radius:1.25rem;
+  font-size:1rem;
+  text-transform:lowercase;
+  outline:none;
+  transition:transform .125s;
+}
+
+button:active {
+  transform:scale(.9,.9);
+  background-color:#5585ff;
+  color: #fafafa;
+}
+
+button[disabled] {
+  opacity: .3;
+  pointer-events: none;
+}
+
+@-webkit-keyframes fadeIn {
+  0% { opacity: 0 }
+  100% { opacity: 1 }
+}
