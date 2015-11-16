@@ -7,9 +7,10 @@ html(lang="en")
     .container
       h1.headline Build your markdown
       p.description
-        | Journey your markdown to the Userland. And yay! I have 
-        a(href="#") pretty nice API
-        |  for you! :D
+        | Journey your markdown to the Userland.
+        | And yay! Checkout 
+        a(href="https://github.com/shuvalov-anton/md-builder") GitHub repo
+        | !
     form(method="POST" action=_id ? "/gist/" + _id : "/gist")
       .editor
         .container
